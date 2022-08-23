@@ -22,8 +22,8 @@
                 </a>
             </div>
 
-            <button type="button" class="btn btn-sm px-3 font-size-24 header-item waves-effect" id="vertical-menu-btn">
-                <i class="ri-menu-2-line align-middle"></i>
+            <button type="button" class="px-3 btn btn-sm font-size-24 header-item waves-effect" id="vertical-menu-btn">
+                <i class="align-middle ri-menu-2-line"></i>
             </button>
 
             <!-- App Search-->
@@ -45,23 +45,22 @@
             </div>
 
 
-
             <div class="dropdown d-inline-block user-dropdown">
                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="rounded-circle header-profile-user" src=" {{ asset('backend/assets/images/users/avatar-1.jpg') }}"
+                    <img class="rounded-circle header-profile-user" src="{{ (!empty(\Auth()->user()->profile_image)? url('upload/admin_images/'.\Auth()->user()->profile_image):url('upload/no_image.jpg')) }}"
                         alt="Header Avatar">
-                    <span class="d-none d-xl-inline-block ms-1">Julia</span>
+                    <span class="d-none d-xl-inline-block ms-1">{{ \Auth()->user()->name }}</span>
                     <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
                     <!-- item-->
-                    <a class="dropdown-item" href="{{ route('admin.profile') }}"><i class="ri-user-line align-middle me-1"></i> Profile</a>
-                    <a class="dropdown-item" href="#"><i class="ri-wallet-2-line align-middle me-1"></i> My Wallet</a>
-                    <a class="dropdown-item d-block" href="#"><span class="badge bg-success float-end mt-1">11</span><i class="ri-settings-2-line align-middle me-1"></i> Settings</a>
-                    <a class="dropdown-item" href="#"><i class="ri-lock-unlock-line align-middle me-1"></i> Lock screen</a>
+                    <a class="dropdown-item" href="{{ route('admin.profile') }}"><i class="align-middle ri-user-line me-1"></i> Profile</a>
+                    <a class="dropdown-item" href="{{ route('change.password') }}"><i class="align-middle ri-wallet-2-line me-1"></i> Change Password</a>
+                    <a class="dropdown-item d-block" href="#"><span class="mt-1 badge bg-success float-end">11</span><i class="align-middle ri-settings-2-line me-1"></i> Settings</a>
+                    <a class="dropdown-item" href="#"><i class="align-middle ri-lock-unlock-line me-1"></i> Lock screen</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-danger" href="{{ route('admin.logout') }}"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
+                    <a class="dropdown-item text-danger" href="{{ route('admin.logout') }}"><i class="align-middle ri-shut-down-line me-1 text-danger"></i> Logout</a>
                 </div>
             </div>
 

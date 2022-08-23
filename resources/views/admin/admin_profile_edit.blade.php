@@ -11,41 +11,41 @@
 
                             <form method="post" action="{{ route('store.profile') }}" enctype="multipart/form-data">
                                 @csrf
-                                <div class="row mb-3">
+                                <div class="mb-3 row">
                                     <label for="example-text-input" class="col-sm-2 col-form-label">Name</label>
                                     <div class="col-sm-10">
                                         <input class="form-control" type="text" id="example-text-input" name="name" value="{{ $editData->name }}">
                                     </div>
                                 </div>
 
-                                <div class="row mb-3">
+                                <div class="mb-3 row">
                                     <label for="example-text-input" class="col-sm-2 col-form-label">E-mail</label>
                                     <div class="col-sm-10">
                                         <input class="form-control" type="email" id="example-text-input" name="email" value="{{ $editData->email }}">
                                     </div>
                                 </div>
 
-                                <div class="row mb-3">
+                                <div class="mb-3 row">
                                     <label for="example-text-input" class="col-sm-2 col-form-label">Username</label>
                                     <div class="col-sm-10">
                                         <input class="form-control" type="text" id="example-text-input" name="username" value="{{ $editData->username }}">
                                     </div>
                                 </div>
 
-                                <div class="row mb-3">
+                                <div class="mb-3 row">
                                     <label for="example-text-input" class="col-sm-2 col-form-label">Profile Image</label>
                                     <div class="col-sm-10">
                                         <input class="form-control" type="file" id="image" name="profile_image" >
                                     </div>
                                 </div>
 
-                                <div class="row mb-3">
+                                <div class="mb-3 row">
                                     <label for="example-text-input" class="col-sm-2 col-form-label"></label>
                                     <div class="col-sm-10">
-                                        <img id="showImage" class="rounded avatar-lg" src="{{asset('backend/assets/images/small/img-5.jpg') }} " alt="Card image cap">
+                                        <img id="showImage" class="rounded avatar-lg" src="{{ (!empty($editData->profile_image)? url('upload/admin_images/'.$editData->profile_image):url('upload/no_image.jpg')) }} " alt="Card image cap">
                                     </div>
                                 </div>
-                                <input type="submit" class="btn btn-info  waves-effect waves-light" value="Update Profile">
+                                <input type="submit" class="btn btn-info waves-effect waves-light" value="Update Profile">
 
                         </form>
                     </div>
