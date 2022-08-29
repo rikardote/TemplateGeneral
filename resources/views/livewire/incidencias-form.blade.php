@@ -29,22 +29,13 @@
         <div class="col-sm-8 form-group">
             <x-datepicker id="fecha_inicio" wire:model.lazy="fecha_inicio" />
         </div>
-        @error('title')
-            <div id="invalidTitleFeedback" class="invalid-feedback">
-                {{ $message }}
-            </div>
-        @enderror
     </div>
+
     <div class="mb-3 row">
         <label for="fecha_final" class="col-sm-2 col-form-label">Fecha Final</label>
         <div class="col-sm-8 form-group">
             <x-datepicker id="fecha_final" wire:model.lazy="fecha_final" />
         </div>
-        @error('title')
-            <div id="invalidTitleFeedback" class="invalid-feedback">
-                {{ $message }}
-            </div>
-        @enderror
     </div>
 
     <button wire:click="save" class="btn btn-info waves-effect waves-light">Capturar</button>
