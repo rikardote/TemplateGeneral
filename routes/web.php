@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\EmployeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,9 +27,14 @@ Route::controller(AdminController::class)->group(function () {
    Route::get('/change/password','ChangePassword')->name('change.password');
    Route::post('/store/password','UpdatePassword')->name('update.password');
 });
+Route::controller(EmployeController::class)->group(function () {
+   Route::get('/empleados/','index')->name('empleados.index');
+   Route::get('/empleado/captura_incidencias/{num_empleado}','CapturaIncidencia')->name('empleado_incidencia.capturar');
+
+});
 
 Route::get('/dashboard', function () {
     return view('admin.index');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
