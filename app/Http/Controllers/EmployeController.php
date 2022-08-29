@@ -15,7 +15,8 @@ class EmployeController extends Controller
     }
 
     public function CapturaIncidencia($num_empleado){
-        $employe = Employe::with('deparment','horario','condicion')->where('num_empleado',$num_empleado)->first();
+        $employe = Employe::where('num_empleado',$num_empleado)->first();
+
 
         return view('backend.employees.captura_incidencias', compact('employe'));
     }

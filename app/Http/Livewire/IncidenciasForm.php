@@ -2,8 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Qna;
-
 use App\Models\Periodo;
 use Livewire\Component;
 use App\Models\Incidencia;
@@ -11,6 +9,7 @@ use Illuminate\Support\Carbon;
 use App\Models\CodigoIncidencia;
 use Ramsey\Uuid\Nonstandard\Uuid;
 use App\Http\Livewire\ShowIncidencias;
+use EmployeServices;
 
 class IncidenciasForm extends Component
 {
@@ -51,11 +50,11 @@ class IncidenciasForm extends Component
         Incidencia::create([
             'employee_id' => $this->employe->id,
             'codigodeincidencia_id' => $this->codigodeincidencia_id,
-            'qna_id' => $this->getQna($this->fecha_inicio),
+            'qna_id' => EmployeServices::getQna($this->fecha_inicio),
             'fecha_inicio' => $this->fecha_inicio,
             'fecha_final' => $this->fecha_final,
             'periodo_id' => $this->periodo_id,
-            'total_dias' => $this->getTotalDias($this->fecha_inicio,$this->fecha_final),
+            'total_dias' => EmployeServices::getTotalDias($this->fecha_inicio,$this->fecha_final),
             'fecha_capturado' => Carbon::now(),
             'token' => Uuid::uuid1()->toString()
         ]);
@@ -77,26 +76,6 @@ class IncidenciasForm extends Component
     }
 
 
-    public function getQna($fecha){
-        $date  = Carbon::createFromFormat('d/m/Y', $fecha);
-        $qna = $date->month * 2;
-        if ($date->day < 16) {
-            $qna-=1;
-        }
 
-        $qna = Qna::where('qna', '=', $qna)->where('year', '=', $date->year)->where('active', '=', '1')->first();
-        if ($qna) {
-            return $qna->id;
-        }
-        else{
-            return false;
-        }
-    }
-    public function getTotalDias($fecha_inicio,$fecha_final){
-        $fecha_inicio = Carbon::createFromFormat('d/m/Y', $fecha_inicio);
-        $fecha_final = Carbon::createFromFormat('d/m/Y', $fecha_final);
-        $total_dias = $fecha_final->diffInDays($fecha_inicio)+1;
 
-        return $total_dias;
-    }
 }

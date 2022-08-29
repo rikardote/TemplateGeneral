@@ -9,7 +9,7 @@ class Condicion extends Model
 {
     use HasFactory;
 
-    protected $table = 'Condiciones';
+    protected $table = 'condiciones';
 
     protected $guarded = [];
 }
