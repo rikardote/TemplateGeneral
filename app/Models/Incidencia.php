@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Periodo;
+use Illuminate\Support\Carbon;
 use App\Models\CodigoIncidencia;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -27,5 +28,16 @@ class Incidencia extends Model
     public function periodo()
     {
         return $this->belongsTo(Periodo::class,'periodo_id');
+    }
+
+    public function setFechaInicioAttribute($value)
+    {
+        $this->attributes['fecha_inicio'] = Carbon::createFromFormat('d/m/Y', $value)
+            ->format('Y-m-d');
+    }
+    public function setFechaFinalAttribute($value)
+    {
+        $this->attributes['fecha_final'] = Carbon::createFromFormat('d/m/Y', $value)
+            ->format('Y-m-d');
     }
 }

@@ -38,8 +38,6 @@ class IncidenciasForm extends Component
     public function mount($employe)
     {
         $this->codigosIncidencias = CodigoIncidencia::all()->sortBy('fullDescription')->pluck('id', 'fullDescription');
-        $this->qnas = Qna::all()->pluck('id', 'fullDescription');
-        $this->periodos = Periodo::all()->sortByDesc('year')->pluck('id', 'fullDescription');
         $this->employe = $employe;
     }
     public function render()
@@ -69,6 +67,7 @@ class IncidenciasForm extends Component
     {
         if(in_array($this->codigodeincidencia_id,['16','25','42'])){
             $this->showPeriodo = true;
+            $this->periodos = Periodo::all()->sortByDesc('year')->pluck('id', 'fullDescription');
         }
         else{
             $this->showPeriodo = false;
@@ -79,7 +78,7 @@ class IncidenciasForm extends Component
 
 
     public function getQna($fecha){
-        $date  = Carbon::parse($fecha);
+        $date  = Carbon::createFromFormat('d/m/Y', $fecha);
         $qna = $date->month * 2;
         if ($date->day < 16) {
             $qna-=1;
@@ -94,9 +93,10 @@ class IncidenciasForm extends Component
         }
     }
     public function getTotalDias($fecha_inicio,$fecha_final){
-        $fecha_inicio = Carbon::parse($fecha_inicio);
-        $fecha_final = Carbon::parse($fecha_final);
+        $fecha_inicio = Carbon::createFromFormat('d/m/Y', $fecha_inicio);
+        $fecha_final = Carbon::createFromFormat('d/m/Y', $fecha_final);
         $total_dias = $fecha_final->diffInDays($fecha_inicio)+1;
+
         return $total_dias;
     }
 }

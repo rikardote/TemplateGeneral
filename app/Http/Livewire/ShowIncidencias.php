@@ -19,7 +19,6 @@ class ShowIncidencias extends Component
 
     public function render()
     {
-
         $this->incidencias = Incidencia::with('codigo','periodo')->where('employee_id',$this->employe->id)
             ->whereHas('qna', function ($query) {
                 $query->where('active', '=', '1'); })

@@ -1,10 +1,9 @@
 <div>
     <div class="mb-3 row">
-        <div class="col-sm-2 col-form-label">Incidencia
-        </div>
-        <div class="col-sm-10 form-group" wire:ignore>
+        <label for="incidenciaSelect" class="col-sm-2 col-form-label">Incidencia</label>
+        <div class="col-sm-8 form-group" wire:ignore>
             <select wire:change="openPeriodos" id="incidenciaSelect" class="form-select select2">
-                <option selected="">Selecciona una incidencia</option>
+                <option>Selecciona una incidencia</option>
                 @foreach ($codigosIncidencias as $codigos => $key)
                     <option value="{{ $key }}">{{ $codigos }}</option>
                 @endforeach
@@ -13,9 +12,9 @@
     </div>
     @if ($showPeriodo)
         <div class="mb-3 row">
-            <label for="example-text-input" class="col-sm-2 col-form-label">Periodo</label>
-            <div class="col-sm-10 form-group">
-                <select wire:model.defer="periodo_id" class="form-select">
+            <label for="periodo" class="col-sm-2 col-form-label">Periodo</label>
+            <div class="col-sm-8 form-group">
+                <select wire:model.defer="periodo_id" id="periodo" class="rounded-pill form-select">
                     <option selected="">Selecciona un periodo</option>
                     @foreach ($periodos as $periodo => $key)
                         <option value="{{ $key }}">{{ $periodo }}</option>
@@ -26,17 +25,26 @@
     @endif
 
     <div class="mb-3 row">
-        <label for="example-text-input" class="col-sm-2 col-form-label">Fecha Inicial</label>
-        <div class="col-sm-10">
-            <input wire:model.defer="fecha_inicio" class="form-control" type="date" id="example-text-input">
+        <label for="fecha_inicio" class="col-sm-2 col-form-label">Fecha Inicial</label>
+        <div class="col-sm-8 form-group">
+            <x-datepicker id="fecha_inicio" wire:model.lazy="fecha_inicio" />
         </div>
+        @error('title')
+            <div id="invalidTitleFeedback" class="invalid-feedback">
+                {{ $message }}
+            </div>
+        @enderror
     </div>
-
     <div class="mb-3 row">
-        <label for="example-text-input" class="col-sm-2 col-form-label">Fecha Inicial</label>
-        <div class="col-sm-10">
-            <input wire:model.defer="fecha_final" class="form-control" type="date" id="example-text-input">
+        <label for="fecha_final" class="col-sm-2 col-form-label">Fecha Final</label>
+        <div class="col-sm-8 form-group">
+            <x-datepicker id="fecha_final" wire:model.lazy="fecha_final" />
         </div>
+        @error('title')
+            <div id="invalidTitleFeedback" class="invalid-feedback">
+                {{ $message }}
+            </div>
+        @enderror
     </div>
 
     <button wire:click="save" class="btn btn-info waves-effect waves-light">Capturar</button>

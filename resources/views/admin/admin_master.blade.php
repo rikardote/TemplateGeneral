@@ -9,8 +9,14 @@
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesdesign" name="author" />
     <!-- App favicon -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="shortcut icon" href="{{ asset('backend/assets/images/favicon.ico') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css"
+        integrity="sha512-MQXduO8IQnJVq1qmySpN87QQkiR1bZHtorbJBD0tzy7/0U9+YIC93QWHeGTEoojMVHWWNkoCp8V6OzVSYrX0oQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
     <!-- jquery.vectormap css -->
     <link href="{{ asset('backend/assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css') }}"
         rel="stylesheet" type="text/css" />
@@ -101,7 +107,9 @@
     <script src=" {{ asset('backend/assets/js/pages/dashboard.init.js') }}"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <!-- App js -->
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js"
+        integrity="sha512-K/oyQtMXpxI4+K0W7H25UopjM8pzq0yrVdFdG21Fh5dBe91I40pDd9A4lzNlHPHBIP2cwZuoxaUSX0GJSObvGA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" defer></script>
     <script src=" {{ asset('backend/assets/js/app.js') }}"></script>
     @livewireScripts
@@ -131,12 +139,10 @@
     </script>
     <script>
         $(document).ready(function() {
-            $('.select2').select2();
+            $('.select2').select2({
+                theme: "bootstrap-5",
+            });
         });
-        window.addEventListener('render-select2', event => {
-            console.log('fired');
-            $('.select2').select2();
-        })
     </script>
     @stack('scripts')
 

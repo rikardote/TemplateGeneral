@@ -1,3 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+input, label {
+    display:block;
+}
+tbody {
+  text-align: center;
+}
+thead {
+  text-align: center;
+}
