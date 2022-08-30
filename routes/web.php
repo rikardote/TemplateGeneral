@@ -29,8 +29,8 @@ Route::controller(AdminController::class)->group(function () {
 });
 Route::controller(EmployeController::class)->group(function () {
    Route::get('/empleados/','index')->name('empleados.index');
+   Route::get('/empleados/search','index')->name('empleados.search');
    Route::get('/empleado/captura_incidencias/{num_empleado}','CapturaIncidencia')->name('empleado_incidencia.capturar');
-
 });
 
 Route::get('/dashboard', function () {

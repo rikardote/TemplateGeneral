@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire;
 
+use EmployeServices;
+use App\Models\Employe;
 use App\Models\Periodo;
 use Livewire\Component;
 use App\Models\Incidencia;
@@ -9,7 +11,6 @@ use Illuminate\Support\Carbon;
 use App\Models\CodigoIncidencia;
 use Ramsey\Uuid\Nonstandard\Uuid;
 use App\Http\Livewire\ShowIncidencias;
-use EmployeServices;
 
 class IncidenciasForm extends Component
 {
@@ -19,7 +20,9 @@ class IncidenciasForm extends Component
     public $fecha_inicio;
     public $fecha_final;
     public $employe;
+    public $medicos = [];
     public $showPeriodo = false;
+    public $showIncapacidades = false;
 
     protected $listeners = [
         'openPeriodos' => 'openPeriodos',
@@ -71,6 +74,15 @@ class IncidenciasForm extends Component
         else{
             $this->showPeriodo = false;
             $this->periodo_id = null;
+        }
+        if(in_array($this->codigodeincidencia_id,['5','23','31'])){
+            $ids = ['30','56','57','58','59','60','61','62','63','64','66','67','68', '101'];
+            $this->medicos = Employe::whereIn('puesto_id', $ids)->pluck('id', 'name');
+            $this->showIncapacidades = true;
+
+        }
+        else{
+            $this->showIncapacidades = false;
         }
 
     }

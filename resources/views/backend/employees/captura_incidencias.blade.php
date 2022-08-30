@@ -3,27 +3,22 @@
     <div class="page-content">
         <div class="container-fluid">
 
-            <!-- start page title -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="page-title-box">
-                        <h4 class="mb-sm-0">Captura de Incidencias</h4>
-                    </div>
-                </div>
-            </div>
-            <!-- end page title -->
 
             <div class="row">
-                <div class="col-5">
+                <div class="col-4">
                     <div class="card">
+                        <div class="text-center card-header">
+                            INGRESAR INCIDENCIAS
+                        </div>
                         <div class="card-body">
                             <livewire:incidencias-form :employe="$employe">
                         </div>
                     </div>
                 </div> <!-- end col -->
 
-                <div class="col-7">
+                <div class="col-8">
                     <div class="card">
+
                         <div class="card-body">
                             <div class="notice notice-info notice-sm">
                                 <h3 align="center">

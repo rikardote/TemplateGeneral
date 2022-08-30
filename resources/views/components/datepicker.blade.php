@@ -1,6 +1,6 @@
 @props(['id'])
 
-<input {{ $attributes }} id="{{ $id }}" type="text" class="form-select rounded-pill flatpickr"
+<input {{ $attributes }} id="{{ $id }}" type="text" class="form-select rounded-right input-xs flatpickr"
     placeholder="MM/DD/YYYY" autocomplete="off">
 
 @push('scripts')
