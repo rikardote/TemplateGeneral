@@ -8,6 +8,7 @@
                     <option value="{{ $key }}">{{ $codigos }}</option>
                 @endforeach
             </select>
+
         </div>
     </div>
 
@@ -28,14 +29,14 @@
         <div class="mt-2 row">
             <label for="medico_id" class="col-sm-8 col-form-label">Medico</label>
             <div class="col-sm-12">
-                <select wire:model.defer="medico_id" id="medico_id" class="form-select rounded-right">
-                    <option>Selecciona un medico</option>
+                <x-select2 id="medico_id" wire:model.defer="medico_id">
                     @foreach ($medicos as $medico)
                         <option value="{{ $medico->id }}">{{ $medico->num_empleado }} - {{ $medico->name }}
                             {{ $medico->father_lastname }}
                             {{ $medico->mother_lastname }} </option>
                     @endforeach
-                </select>
+                </x-select2>
+
             </div>
         </div>
         <div class="mt-2 row">
