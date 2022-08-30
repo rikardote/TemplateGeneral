@@ -19,7 +19,10 @@ class IncidenciasForm extends Component
     public $periodos, $periodo_id;
     public $fecha_inicio;
     public $fecha_final;
+    public $fecha_expedida;
     public $employe;
+    public $diagnostico;
+    public $medico_id;
     public $medicos = [];
     public $showPeriodo = false;
     public $showIncapacidades = false;
@@ -34,7 +37,10 @@ class IncidenciasForm extends Component
         'qna_id' => '',
         'fecha_inicio' => 'required',
         'fecha_final' => 'required',
+        'fecha_expedida' => 'required',
+        'diagnostico' => 'required',
         'periodo_id' => '',
+        'medico_id' => '',
     ];
 
     public function mount($employe)
@@ -56,7 +62,10 @@ class IncidenciasForm extends Component
             'qna_id' => EmployeServices::getQna($this->fecha_inicio),
             'fecha_inicio' => $this->fecha_inicio,
             'fecha_final' => $this->fecha_final,
+            'fecha_expedida' => $this->fecha_expedida,
             'periodo_id' => $this->periodo_id,
+            'medico_id' => $this->medico_id,
+            'diagnostico' => $this->diagnostico,
             'total_dias' => EmployeServices::getTotalDias($this->fecha_inicio,$this->fecha_final),
             'fecha_capturado' => Carbon::now(),
             'token' => Uuid::uuid1()->toString()
@@ -77,7 +86,7 @@ class IncidenciasForm extends Component
         }
         if(in_array($this->codigodeincidencia_id,['5','23','31'])){
             $ids = ['30','56','57','58','59','60','61','62','63','64','66','67','68', '101'];
-            $this->medicos = Employe::whereIn('puesto_id', $ids)->pluck('id', 'name');
+            $this->medicos = Employe::orderBy('num_empleado')->whereIn('puesto_id',$ids)->get();
             $this->showIncapacidades = true;
 
         }

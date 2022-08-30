@@ -38,4 +38,10 @@ class Employe extends Model
             get: fn($value,$attributes) => $attributes['name'].' '.$attributes['father_lastname'].' '.$attributes['mother_lastname']
         );
     }
+    protected function MedicoName(): Attribute
+    {
+        return new Attribute(
+            get: fn($value,$attributes) => $attributes['num_empleado'].' - '.$attributes['name'].' '.$attributes['father_lastname'].' '.$attributes['mother_lastname']
+        );
+    }
 }

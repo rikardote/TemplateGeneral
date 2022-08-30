@@ -116,6 +116,9 @@
     @livewireScripts
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/es.js"></script>
 
     <x-livewire-alert::scripts />
 
